@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods In JavaScript</title>
+</head>
+<body>
+    <h2>Array Methods in JavaScript</h2>
+    <h4>The method creates a new JavaScript array and return it after iteration will be completed</h4>
+    <script>
+        // Array Methods: map(), forEach, filter, find, some, every
+        document.write("The array elements are: ");
+        let arr=['Harsha','Manoj','Varun','Phani'];
+        for (let i = 0; i < arr.length; i++) {
+            document.write(arr[i]+" ");
+        }
+        document.write("<h2>map method</h2>");
+        // Always remember that the arguments for all the array methods are (index_name, index_number, array_name)
+        // The Javascript map() method in JavaScript creates an array by calling a specific function on each element present in the parent array. It is a non-mutating method. Generally, the map() method is used to iterate over an array and call function on every element of the array.
+        let arr1=arr.map(function(trainee_name,index,arr){
+            document.write(trainee_name+" "+index+"<br>");
+            return "Dear "+trainee_name;
+        });
+        document.write(arr1+"<br>");
+        // Map method for array of objects
+        var trainees=[
+            {
+                "name":"Harsha",
+                "rollno":"5G6",
+            },{
+                "name":"Phani",
+                "rollno":"5D8",
+            }
+        ];
+        trainees.map(function(each_trainee,i,arr) {
+            document.write(each_trainee+" "+i+" : ");
+            document.write(each_trainee.name+", "+each_trainee.rollno+"<br>");
+        });
+        // To create a table, you can use the following code:
+        let tb=document.createElement("table");
+        tb.setAttribute("border","1");
+        tb.setAttribute("cellspacing","0");
+        tb.setAttribute("width","200px");
+        let tr=document.createElement("tr");
+        var th=document.createElement("th");
+        th.innerText="Index";
+        tr.appendChild(th);
+        var th=document.createElement("th");
+        th.innerText="Name";
+        tr.appendChild(th);
+        var th=document.createElement("th");
+        th.innerText="Roll Number";
+        tr.appendChild(th);
+        tb.appendChild(tr);
+        trainees.map(function(each_trainee,i,arr) {
+            let tr=document.createElement("tr");
+            let td=document.createElement("td");
+            td.setAttribute("border","1");
+            td.innerText=i+1;
+            tr.appendChild(td);
+            for (const key in each_trainee) {
+                let td=document.createElement("td");
+                td.setAttribute("border","1");
+                td.innerText=each_trainee[key];
+                tr.appendChild(td);
+            }
+            tb.appendChild(tr);
+        });
+        document.body.append(tb);
+        // forEach method
+        // The forEach() array method loops through any array, executing a provided function once for each array element in ascending index order. This function is referred to as a callback function.
+        // Remember that this method cannot return/create any new array.
+        document.write("<h2>forEach method</h2>")
+        let salaries=[40000,25000,30000];
+        document.write("Before increment: "+salaries+"<br>"+"The increments are:");
+        salaries.forEach(function(amount,index,arr){
+            var increment=amount/10;
+            document.write(increment+" ");
+            arr[index]=amount+increment;
+        });
+        document.write("<br>"+"After increment: "+salaries+"<br>");
+        // filter method
+        document.write("<h2>filter method</h2>");
+        var nums=[8,9,89,60,4,9];
+        document.write("Original array: "+nums+"<br>");
+        // filter method can create a new array
+        let even_nums=nums.filter(function(ele,i,nums){
+            return ele%2==0;
+        })
+        document.write("Even numbers in the above array are: "+even_nums+"<br>");
+        // find method returns value
+        document.write("<h2>find method</h2>");
+        var trainees=['Harsha','Manoj','Varun','Phani'];
+        document.write("Original array: "+trainees+"<br>");
+        var getonename=trainees.find(function(name,i,trainees){
+            return name.startsWith('H');
+        });
+        document.write("The names in the array which starts with 'H' is: "+getonename+"<br>");
+        // some method returns boolean value
+        document.write("<h2>some method</h2>");
+        var mails=["harsha@gmail.com","manoj@gmail.com","varun@gmail.com","phani@gmail.com"];
+        document.write("Original mails array: "+mails+"<br>");
+        var mail_exists=mails.some(function(ele,i,arr){
+            return ele=="harsha@gmail.com";
+        });
+        document.write("Does Harsha's mail exist or not: "+mail_exists+"<br>");
+        // every method also returns single boolean value but checks all the values in a group
+        document.write("<h2>every method</h2>");
+        var marks=[55,12,87,86,54,64];
+        document.write("Student marks array: "+marks+"<br>");
+        var final_result=marks.every(function(score){
+            return score>=35;
+            // Checks as a group if all the marks of a single student got more than 35 marks to show that the student is fully passed!
+        })
+        if(final_result==true){
+            document.write("Student is passed!");
+        }
+        else{
+            document.write("Student failed as he got one of the subjects marks less than 35!");
+        }
+        // reduce method
+        document.write("<h2>reduce method</h2>");
+        // It takes 4 arguments having first argument as the accumulator
+        var nums=[7,90,8,100,50,49];
+        document.write("Original array: "+nums+"<br>");
+        var sum=nums.reduce(function(accumulator,ele,i,arr){
+            return accumulator+ele;
+        },0);
+        // 0 acts as the accumulator value
+        document.write("The sum of array elements is: "+sum+"<br>");
+        // It can also be used to find the maximum element of an array
+        var maxx=nums.reduce(function(accumulator,ele,i,arr){
+            // Always remember that the returned value will be stored in the accumulator, in which the starting accumulator value is nums[0].
+            if(accumulator>ele){
+                return accumulator;
+            }
+            else{
+                return ele;
+            }
+        },nums[0]);
+        document.write("The maximum of array elements is: "+maxx+"<br>");
+    </script>
+</body>
+</html>

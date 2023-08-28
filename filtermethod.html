@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		
+	</title>
+</head>
+<body>
+	<p>in find method having differnt names start with same character only all names give<br></p>
+	<p>like prasad,pavan  it  give both prasad and pavan  </p>
+<script type="text/javascript">
+	let names=['prasad','ravi','gowtham','pavan'];
+
+
+	let data=names.filter(function(name){
+		return name.startsWith('p');
+	})
+	// console.log(data);
+	document.write(data)
+
+	// or
+
+	// let x=names.find(test)
+	// function test(ele){
+	// 	return ele.startsWith('p')
+	// }
+	// document.write(x);
+</script>
+</body>
+</html>
